@@ -31,6 +31,35 @@ projects.forEach(project => {
     projectList.appendChild(li);
 });
 
+// Create a button to add new project dynamically
+const addButton = document.createElement("button");
+addButton.textContent = "➕ Add New Project";
+addButton.style.margin = "20px auto";
+addButton.style.display = "block";
+addButton.style.padding = "10px 20px";
+addButton.style.fontSize = "16px";
+addButton.style.cursor = "pointer";
+addButton.style.borderRadius = "6px";
+addButton.style.border = "none";
+addButton.style.backgroundColor = "#4CAF50";
+addButton.style.color = "white";
+addButton.style.transition = "all 0.3s ease";
+
+// Append button to body
+document.body.appendChild(addButton);
+
+// On click — add a new project item
+addButton.addEventListener("click", () => {
+  const newProject = {
+    day: `Day ${projects.length + 1}`,
+    name: "New Dynamic Project",
+    folder: `Day ${projects.length + 1} - New Dynamic Project`
+  };
+
+  projects.push(newProject);
+  createProjectItem(newProject);
+});
+
 // Dynamically create a style element
 const style = document.createElement("style");
 style.textContent = `
