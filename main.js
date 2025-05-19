@@ -5,7 +5,7 @@ const projectList = document.getElementById("projectList");
 // List of projects
 const projects = [
     { day: "Day 1", name: "Hello Name Application", folder: "Day 1 - Hello Name Application" },
-    { day: "Day 2", name: "Light Bulb On/Off Project", folder: "Day 2 - Light Bulb On/Off Project" },
+    { day: "Day 2", name: "Light Bulb On/Off Project", folder: "Day 2 - Light Bulb On or Off Project" },
     { day: "Day 3", name: "Hello Nmae Appliction", folder: "Day 3 - Hello Nmae Appliction" },
     { day: "Day 4", name: "Hello Nmae Appliction", folder: "Day 4 - Hello Nmae Appliction" },
     { day: "Day 5", name: "Hello Nmae Appliction", folder: "Day 5 - Hello Nmae Appliction" },
