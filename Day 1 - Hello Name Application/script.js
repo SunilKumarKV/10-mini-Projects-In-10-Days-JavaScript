@@ -4,7 +4,7 @@ const spanElement = document.getElementById("updateContent");
 btnElement.onclick = function () {
     const yourName = prompt("Please Enter Your Name");
     spanElement.textContent = yourName;
-}
+};
 
 // Dynamically create a style element
 const style = document.createElement("style");
