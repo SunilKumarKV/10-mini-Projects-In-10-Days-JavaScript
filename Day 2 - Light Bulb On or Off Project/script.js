@@ -7,6 +7,9 @@ div2.className = "wire";
 const div3 = document.createElement("div");
 div3.className = "bulb";
 
+const div4 = document.createElement("div");
+div3.className = "switch";
+
 const lightBulb = document.createElement("i");
 lightBulb.className = "fas fa-lightbulb";
 div3.appendChild(lightBulb);
@@ -14,6 +17,8 @@ div3.appendChild(lightBulb);
 // Nest structure
 div2.appendChild(div3);
 div1.appendChild(div2);
+div1.appendChild(div4);
+
 
 // Create second <i> tag with class "switch" and append to light
 const powerOff = document.createElement("i");
