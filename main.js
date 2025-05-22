@@ -76,7 +76,7 @@ const style = document.createElement("style");
 style.textContent = `
   body {
     font-family: "Segoe UI", sans-serif;
-    background: #f0f2f5;
+    background: #ADD8E;
     display: flex;
     flex-direction: column;
     align-items: center;
