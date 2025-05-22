@@ -1,103 +1,157 @@
 // Set the main title and Get the ul Element
-const title = document.getElementById("title");
 const projectList = document.getElementById("projectList");
+const addButton = document.getElementById("addButton");
 
 // List of projects
 const projects = [
-    { day: "Day 1", name: "Hello Name Application", folder: "Day 1 - Hello Name Application" },
-    { day: "Day 2", name: "Light Bulb On/Off Project", folder: "Day 2 - Light Bulb On or Off Project" },
-    { day: "Day 3", name: "Random Number Generator", folder: "Day 3 - Random Number Generator" },
-    { day: "Day 4", name: "Generate Random Password", folder: "Day 4 - Generate Random Password" },
-    { day: "Day 5", name: "Email Validation Project", folder: "Day 5 - Email Validation Project" },
-    { day: "Day 6", name: "Hello Nmae Appliction", folder: "Day 6 - Hello Nmae Appliction" },
-    { day: "Day 7", name: "Hello Nmae Appliction", folder: "Day 7 - Hello Nmae Appliction" },
-    { day: "Day 8", name: "Hello Nmae Appliction", folder: "Day 8 - Hello Nmae Appliction" },
-    { day: "Day 9", name: "Hello Nmae Appliction", folder: "Day 9 - Hello Nmae Appliction" },
-    { day: "Day 10", name: "Hello Nmae Appliction", folder: "Day 10 - Hello Nmae Appliction" },
-];
+        {
+          day: "Day 1",
+          name: "Hello Name App",
+          folder: "Day 1 - Hello Name Application",
+        },
+        {
+          day: "Day 2",
+          name: "Light Bulb Toggle",
+          folder: "Day 2 - Light Bulb On or Off Project",
+        },
+        {
+          day: "Day 3",
+          name: "Random Number Generator",
+          folder: "Day 3 - Random Number Generator",
+        },
+      ];
 
-// Loop through projects and create list items
-projects.forEach(project => {
-    const li = document.createElement("li");
-    const link = document.createElement("a")
+      // Loop through projects and create list items
+      function createProjectItem(project, index) {
+        const li = document.createElement("li");
 
-    // Set link text and href
-    link.textContent = `${project.day} - ${project.name}`;
-    link.href = `${project.folder}/index.html`;
-    link.target = "_blank"; // open in new tab
+        const link = document.createElement("a");
+        link.textContent = `${project.day}: ${project.name}`;
+        link.href = `${project.folder}/index.html`;
+        link.target = "_blank";
 
-    //Append link to li and li to ul
-    li.appendChild(link);
-    projectList.appendChild(li);
-});
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "🗑";
+        removeBtn.className = "remove-btn";
+        removeBtn.addEventListener("click", () => {
+          projects.splice(index, 1);
+          renderProjectList();
+        });
 
-// Create a button to add new project dynamically
-const addButton = document.createElement("button");
-addButton.textContent = "➕ Add New Project";
-addButton.style.margin = "20px auto";
-addButton.style.display = "block";
-addButton.style.padding = "10px 20px";
-addButton.style.fontSize = "16px";
-addButton.style.cursor = "pointer";
-addButton.style.borderRadius = "6px";
-addButton.style.border = "none";
-addButton.style.backgroundColor = "#4CAF50";
-addButton.style.color = "white";
-addButton.style.transition = "all 0.3s ease";
+        li.appendChild(link);
+        li.appendChild(removeBtn);
+        projectList.appendChild(li);
+      }
 
-// Append button to body
-document.body.appendChild(addButton);
+      function renderProjectList() {
+        projectList.innerHTML = "";
+        projects.forEach((project, index) => createProjectItem(project, index));
+      }
 
-// On click — add a new project item
-addButton.addEventListener("click", () => {
-  const newProject = {
-    day: `Day ${projects.length + 1}`,
-    name: "New Dynamic Project",
-    folder: `Day ${projects.length + 1} - New Dynamic Project`
-  };
+      addButton.addEventListener("click", () => {
+        const newIndex = projects.length + 1;
+        const newProject = {
+          day: `Day ${newIndex}`,
+          name: `Dynamic Project ${newIndex}`,
+          folder: `Day ${newIndex} - Dynamic Project`,
+        };
+        projects.push(newProject);
+        renderProjectList();
+      });
 
-  projects.push(newProject);
-  createProjectItem(newProject);
-});
+      renderProjectList();
+
+      // Enable drag and drop using SortableJS
+      new Sortable(projectList, {
+        animation: 150,
+        onEnd: (evt) => {
+          const movedItem = projects.splice(evt.oldIndex, 1)[0];
+          projects.splice(evt.newIndex, 0, movedItem);
+          renderProjectList(); // refresh buttons with correct indexes
+        },
+      });
 
 // Dynamically create a style element
 const style = document.createElement("style");
 style.textContent = `
   body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Segoe UI", sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
   }
+
   h1 {
-    color: #4CAF50;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  li {
-    background: #fff;
-    margin: 10px 0;
-    padding: 12px 18px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-  }
-  li:hover {
-    background: #e0ffe0;
-    transform: scale(1.02);
-  }
-  a {
-    text-decoration: none;
+    margin-bottom: 20px;
     color: #333;
+  }
+
+  dashboard {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 30px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 10px 0;
+    background: #e3f2fd;
+    border-radius: 8px;
+    cursor: grab;
+  }
+
+  li.dragging {
+    opacity: 0.5;
+  }
+
+  a {
+    flex-grow: 1;
+    text-decoration: none;
+    color: #0d47a1;
     font-weight: bold;
   }
-  a:hover {
-    color: #4CAF50;
+
+  .remove-btn {
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .remove-btn:hover {
+    background: #c62828;
+  }
+
+  button#addButton {
+    margin-top: 20px;
+    width: 100%;
+    background: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button#addButton:hover {
+    background: #1976d2;
   }
 `;
 
