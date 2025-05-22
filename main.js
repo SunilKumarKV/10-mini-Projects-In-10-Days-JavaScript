@@ -7,7 +7,7 @@ const projects = [
     { day: "Day 1", name: "Hello Name Application", folder: "Day 1 - Hello Name Application" },
     { day: "Day 2", name: "Light Bulb On/Off Project", folder: "Day 2 - Light Bulb On or Off Project" },
     { day: "Day 3", name: "Random Number Generator", folder: "Day 3 - Random Number Generator" },
-    { day: "Day 4", name: "Hello Nmae Appliction", folder: "Day 4 - Hello Nmae Appliction" },
+    { day: "Day 4", name: "Generate Random Password", folder: "Day 4 - Generate Random Password" },
     { day: "Day 5", name: "Hello Nmae Appliction", folder: "Day 5 - Hello Nmae Appliction" },
     { day: "Day 6", name: "Hello Nmae Appliction", folder: "Day 6 - Hello Nmae Appliction" },
     { day: "Day 7", name: "Hello Nmae Appliction", folder: "Day 7 - Hello Nmae Appliction" },
