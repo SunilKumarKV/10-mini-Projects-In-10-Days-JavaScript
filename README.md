@@ -19,6 +19,7 @@ Welcome to **10 Days of JavaScript Mini Projects** – a collection of beginner-
 | 9️⃣  | **Palindrome Checker** | Check whether a word or phrase is a palindrome. |
 | 🔟  | **Get Unicode Character Value in JS** | Input a character and display its Unicode value. |
 
+
 ---
 
 ## 🚀 Getting Started
